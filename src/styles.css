@@ -1,0 +1,15 @@
+@import '~@angular/material/prebuilt-themes/purple-green.css';
+@import '~font-awesome/css/font-awesome.min.css';
+@import '~@ngx-share/button/styles/share-buttons.css';
+@import '~@ngx-share/button/styles/themes/circles/circles-dark-theme.css';
+
+body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #E5C562;
+}

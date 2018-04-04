@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+
+  eldavosblog-api:
+    image: eldavosblog/api:latest
+    ports:
+      - 3000:8000
+    environment:
+      ADMIN_EMAIL: "test@test.com"
+      ADMIN_USERNAME: "test"
+      ADMIN_PASSWORD: "test"
+      DB_HOST: "db"
+      DB_USERNAME: "test"
+      DB_PASSWORD: "test"
+    networks:
+      main:
+        aliases:
+          - eldavosblog-api
+    command: >
+      /bin/bash -c "sleep 5; node ."
+
+networks:
+  main:
+
+volumes:
+  yarn:

@@ -20,7 +20,10 @@
     "e2e": "ng e2e --environment e2e",
     "prod": "node ./dist/server.js",
     "workbox": "workbox generate:sw",
-    "bundle:size": "ng build --prod --stats-json && webpack-bundle-analyzer dist/browser/stats.json"
+    "bundle:size": "ng build --prod --stats-json && webpack-bundle-analyzer dist/browser/stats.json",
+    "docker": "docker build -t mscblog/ui .",
+    "docker:tag": "docker tag mscblog/ui mscblog/ui",
+    "docker:push": "docker push mscblog/ui"
   },
   "private": true,
   "dependencies": {

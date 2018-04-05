@@ -8,7 +8,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --open",
+    "start": "ng serve --open -pc proxy.conf.json",
     "build:ui": "ng build --prod -pr false",
     "build:server": "ng build --prod -pr false --output-hashing=false --app 1",
     "postbuild:server": "webpack --config webpack.server.config.js",

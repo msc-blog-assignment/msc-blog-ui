@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 
@@ -10,7 +9,7 @@ export class UserService {
   }
 
   login({username, password}: { username: string, password: string }): Observable<any> {
-    return this.http.post(`${environment.blogApi}/users/login`, {username, password});
+    return this.http.post(`/api/users/login`, {username, password});
   }
 
 }

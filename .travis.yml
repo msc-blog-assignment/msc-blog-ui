@@ -6,10 +6,10 @@ services:
 addons:
   chrome: stable
 install:
-- yarn
-- yarn lint
-- yarn build
-- yarn docker
+- npm i
+- npm run lint
+- npm run build
+- npm run docker
 cache:
   yarn: true
 before_script:

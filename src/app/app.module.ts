@@ -9,20 +9,24 @@ import { IsLoggedInGuard } from './router/is-logged-in.guard';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { MatSidenavModule } from '@angular/material';
+import { localStorageSync } from 'ngrx-store-localstorage';
 import { ActionReducer, StoreModule } from '@ngrx/store';
 import { AppState, getRootReducer } from './root.reducer';
 import { storeLogger } from 'ngrx-store-logger';
 import { EffectsModule } from '@ngrx/effects';
 import { NavEpics } from './nav/nav.epics';
 import { UserEpics } from './user/user.epics';
-import { environment } from '../environments/environment';
 import { LandingModule } from './landing/landing.module';
 
 export function logger(reducer: ActionReducer<AppState>): any {
   return storeLogger()(reducer);
 }
 
-export const metaReducers = environment.production ? [] : [logger];
+export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
+  return localStorageSync({keys: ['user'], rehydrate: true})(reducer);
+}
+
+export const metaReducers = [logger, localStorageSyncReducer];
 
 @NgModule({
   declarations: [

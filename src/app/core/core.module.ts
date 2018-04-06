@@ -6,6 +6,18 @@ import { Apollo, ApolloModule } from 'apollo-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpLink, HttpLinkModule } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { setContext } from 'apollo-link-context';
+import { UserState } from '../user/user.state';
+
+const authLink = setContext((_, {headers}) => {
+  const user: UserState = JSON.parse(localStorage.getItem('user'));
+  return {
+    headers: {
+      ...headers,
+      authorization: user.user.id ? user.user.id : ''
+    }
+  }
+});
 
 @NgModule({
   imports: [
@@ -27,8 +39,9 @@ export class CoreModule {
 
   constructor(apollo: Apollo,
               httpLink: HttpLink) {
+
     apollo.create({
-      link: httpLink.create({uri: '/graphql'}),
+      link: authLink.concat(httpLink.create({uri: '/graphql'})),
       cache: new InMemoryCache()
     });
   }

@@ -1,5 +1,5 @@
-import {UserState, userState} from './user.state';
-import {UserActions} from './user.actions';
+import { UserState, userState } from './user.state';
+import { UserActions } from './user.actions';
 
 export function userReducer(state: UserState = userState, action): UserState {
   switch (action.type) {
@@ -16,4 +16,4 @@ export function userReducer(state: UserState = userState, action): UserState {
     default:
       return state;
   }
-};
+}

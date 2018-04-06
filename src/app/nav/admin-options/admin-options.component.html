@@ -2,7 +2,11 @@
   <mat-icon>more_vert</mat-icon>
 </button>
 <mat-menu #menu>
-  <button id="admin-create-article" mat-menu-item [routerLink]="['article', 'add']">
+  <button mat-menu-item [routerLink]="['articles']">
+    <mat-icon>add</mat-icon>
+    <span>Articles</span>
+  </button>
+  <button mat-menu-item [routerLink]="['article', 'add']">
     <mat-icon>add</mat-icon>
     <span>New Article</span>
   </button>

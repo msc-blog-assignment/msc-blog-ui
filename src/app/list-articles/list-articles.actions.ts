@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class ListArticlesActions {
@@ -11,5 +11,5 @@ export class ListArticlesActions {
 
   fetchSuccess = () => ({type: ListArticlesActions.FETCH_SUCCESS});
 
-  fetchFail = () => ({type: ListArticlesActions.FETCH_FAIL});
+  fetchFail = (err) => ({type: ListArticlesActions.FETCH_FAIL, payload: err});
 }

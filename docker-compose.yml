@@ -9,7 +9,7 @@ services:
     environment:
       USER_API: http://user-api:3000
       GRAPHQL: http://graphql:3030
-      UI_URL: http://0.0.0.0:4200
+      UI_URL: http://localhost:4200
     networks:
       - main
     command: >
@@ -20,8 +20,8 @@ services:
     ports:
       - 3001:3030
     environment:
-      USER_API: mscblog-user-api:3002
-      ARTICLE_API: mscblog-article-api:3003
+      USER_API: http://user-api:3000
+      ARTICLE_API: http://article-api:3000
     networks:
       - main
     command: >

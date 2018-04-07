@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ListArticlesActions} from './list-articles.actions';
+import {AppState} from '../root.reducer';
+import {Store} from '@ngrx/store';
+import {UserState} from '../user/user.state';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-list-articles',
@@ -7,9 +12,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListArticlesComponent implements OnInit {
 
-  constructor() { }
+  listArticles$: Observable<UserState>;
+
+  constructor(private store: Store<AppState>, private actions: ListArticlesActions) {
+  }
 
   ngOnInit() {
+    this.store.dispatch(this.actions.fetch());
   }
 
 }

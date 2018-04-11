@@ -4,7 +4,7 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { catchError } from 'rxjs/operators/catchError';
 import { mergeMap } from 'rxjs/operators/mergeMap';
 import { map } from 'rxjs/operators/map';
-import { ArticlesService, MyArticlesResponse } from '../articles/articles.service';
+import { ArticlesService } from '../articles/articles.service';
 import { withLatestFrom } from 'rxjs/operators/withLatestFrom';
 import { select, Store } from '@ngrx/store';
 import { ModuleState } from '../add-article/module.state';
@@ -19,7 +19,7 @@ export class MyArticlesEffects {
     select(([action, storeState]) => storeState),
     mergeMap((store) =>
       this.articlesService.getMyArticles(store.user.user.userId).pipe(
-        map(({data: {myArticles}}) => this.actions.fetchSuccess(myArticles)),
+        map(({data}) => this.actions.fetchSuccess(data.myArticles)),
         catchError((error) => of(this.actions.fetchFail(error)))
       )
     ));

@@ -34,11 +34,7 @@ const createArticle = gql`
 `;
 
 export interface MyArticlesResponse {
-  data: ResponseData;
-}
-
-export interface ResponseData {
-  myArticles: Article[];
+  myArticles: Article[]
 }
 
 @Injectable()
@@ -51,7 +47,7 @@ export class ArticlesService {
     return this.apollo.query({query});
   }
 
-  getMyArticles(userId: string): Observable<ApolloQueryResult<MyArticlesResponse>> {
+  getMyArticles(userId: string) {
     return this.apollo.query<MyArticlesResponse>({query: myArticlesQuery, variables: {userId}});
   }
 

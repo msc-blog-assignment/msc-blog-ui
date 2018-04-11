@@ -1,0 +1,64 @@
+type Article {
+  id: ID!
+  createdAt: String!
+  userId: String
+  name: String
+  content: String
+  user: User!
+  comments: [Comment]!
+}
+
+type User {
+  id: ID!
+  createdAt: String!
+  username: String!
+  email: String!
+  articles(userId: String): [Article!]!
+  comments: [Comment]!
+}
+
+type Comment {
+  id: ID!
+  createdAt: String!
+  userId: String!
+  articleId: String!
+  comment: String!
+  responses: [Response]!
+}
+
+type Response {
+  id: ID!
+  createdAt: String!
+  userId: String!
+  articleId: String!
+  commentId: String!
+  response: String!,
+  article: Article!
+  user: User!
+}
+
+type Login {
+  id: String!
+  ttl: Int!
+  created: String!
+  userId: String!
+}
+
+type Mutation {
+  login (username: String! password: String!): Login
+
+  createArticle (userId: String name: String content: String): Article
+}
+
+type Query {
+  # User
+  user(id: String): User!
+  users: [User]!
+
+  # Article
+  article(id: String!): Article!
+  articles: [Article]!
+  myArticles(id: String!): [Article]!
+
+  # Comment
+}

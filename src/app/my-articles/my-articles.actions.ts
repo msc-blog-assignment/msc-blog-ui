@@ -10,7 +10,7 @@ export class MyArticlesActions {
 
   fetch = () => ({type: MyArticlesActions.FETCH});
 
-  fetchSuccess = (articles: Article[]) => ({type: MyArticlesActions.FETCH_SUCCESS, payload: articles});
+  fetchSuccess = (articles: any) => ({type: MyArticlesActions.FETCH_SUCCESS, payload: articles});
 
   fetchFail = (error) => ({type: MyArticlesActions.FETCH_FAIL, error});
 }

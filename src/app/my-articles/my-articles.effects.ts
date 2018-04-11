@@ -19,7 +19,7 @@ export class MyArticlesEffects {
     select(([action, storeState]) => storeState),
     mergeMap((store) =>
       this.articlesService.getMyArticles(store.user.user.userId).pipe(
-        map(({data}) => this.actions.fetchSuccess(data.myArticles)),
+        map(({data: {myArticles}}) => this.actions.fetchSuccess(myArticles)),
         catchError((error) => of(this.actions.fetchFail(error)))
       )
     ));

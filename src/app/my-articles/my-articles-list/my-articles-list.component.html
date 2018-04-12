@@ -1,0 +1,6 @@
+<mat-card *ngFor="let article of (articles$ | async)">
+  <mat-card-header>
+    <mat-card-title>{{article.name}}</mat-card-title>
+  </mat-card-header>
+</mat-card>
+

@@ -4,7 +4,6 @@ import gql from 'graphql-tag';
 import { Observable } from 'rxjs/Observable';
 import { Article } from './article.model';
 import { AddArticleForm } from '../add-article/add-article.state';
-import { ApolloQueryResult } from 'apollo-client';
 
 const query = gql`
   query {

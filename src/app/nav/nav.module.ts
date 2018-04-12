@@ -13,6 +13,7 @@ import {
   MatButtonModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule,
   MatToolbarModule
 } from '@angular/material';
+import { SideNavComponent } from './side-nav/side-nav.component';
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import {
     NavComponent,
     NavLoginComponent,
     LoginModalComponent,
-    AdminOptionsComponent
+    AdminOptionsComponent,
+    SideNavComponent
   ],
   exports: [
     NavComponent

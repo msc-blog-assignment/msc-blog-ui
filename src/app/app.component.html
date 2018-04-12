@@ -1,7 +1,9 @@
-<div>
-  <app-nav></app-nav>
-
-  <div class="container">
+<mat-sidenav-container (backdropClick)="hideSideNav()">
+  <mat-sidenav mode="over" [opened]="showSideNav$ | async">
+    <app-side-nav></app-side-nav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-nav></app-nav>
     <router-outlet></router-outlet>
-  </div>
-</div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

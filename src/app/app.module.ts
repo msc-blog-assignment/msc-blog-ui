@@ -18,13 +18,14 @@ import {NavEpics} from './nav/nav.epics';
 import {UserEpics} from './user/user.epics';
 import {LandingModule} from './landing/landing.module';
 import {SideNavModule} from './side-nav/side-nav.module';
+import {customStorage} from 'app/custom-local-storage';
 
 export function logger(reducer: ActionReducer<AppState>): any {
   return storeLogger()(reducer);
 }
 
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
-  return localStorageSync({keys: ['user'], rehydrate: true})(reducer);
+  return localStorageSync({keys: ['user'], rehydrate: true, storage: customStorage})(reducer);
 }
 
 export const metaReducers = [logger, localStorageSyncReducer];

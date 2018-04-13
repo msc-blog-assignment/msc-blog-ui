@@ -1,5 +1,5 @@
 export const sideNavState: SideNavState = {
-  show: true
+  show: false
 };
 
 export interface SideNavState {

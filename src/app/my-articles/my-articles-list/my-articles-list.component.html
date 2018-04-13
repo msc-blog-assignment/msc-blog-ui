@@ -1,6 +1,14 @@
-<mat-card *ngFor="let article of (articles$ | async)">
-  <mat-card-header>
-    <mat-card-title>{{article.name}}</mat-card-title>
-  </mat-card-header>
-</mat-card>
-
+<div fxFlex
+     fxLayout="row"
+     fxLayoutWrap
+     class="container">
+  <div *ngFor="let article of (articles$ | async)"
+       fxFlex="100"
+       fxFlex.xs="100"
+       fxFlex.sm="50"
+       fxFlex.md="25"
+       fxFlex.lg="25">
+    <app-article-card [article]="article">
+    </app-article-card>
+  </div>
+</div>

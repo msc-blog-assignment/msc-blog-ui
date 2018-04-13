@@ -42,7 +42,12 @@ export class CoreModule {
 
     apollo.create({
       link: authLink.concat(httpLink.create({uri: '/graphql'})),
-      cache: new InMemoryCache()
+      cache: new InMemoryCache({}),
+      defaultOptions: {
+        query: {
+          fetchPolicy: 'network-only'
+        }
+      }
     });
   }
 }

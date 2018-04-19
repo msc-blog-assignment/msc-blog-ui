@@ -1,8 +1,11 @@
-import { UserState, userState } from './user.state';
-import { UserActions } from './user.actions';
+import {UserState, userState} from './user.state';
+import {UserActions} from './user.actions';
+import {NavActions} from '../nav/nav.actions';
 
 export function userReducer(state: UserState = userState, action): UserState {
   switch (action.type) {
+    case NavActions.SHOW_LOGIN_MODAL:
+      return {...state, isLoggingIn: false};
     case UserActions.LOGIN:
       return {...state, isLoggingIn: true};
     case UserActions.LOGIN_SUCCESS:

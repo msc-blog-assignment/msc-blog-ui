@@ -13,7 +13,7 @@ import {mergeMap} from 'rxjs/operators/mergeMap';
 import {AppState} from '../root.reducer';
 
 @Injectable()
-export class UserEpics {
+export class UserEffects {
 
   @Effect() login$ = this.actions$.pipe(
     ofType(UserActions.LOGIN),
@@ -21,13 +21,19 @@ export class UserEpics {
     select(([action, storeState]) => storeState.user.loginForm),
     mergeMap((loginForm) =>
       this.userService.login(loginForm).pipe(
-        mergeMap((user: User) => concat(
-          of(this.userActions.loginSuccess(user)),
-          of(this.navActions.hideAllModals())
-        )),
-        catchError(() => of(this.userActions.loginFail()))
+        mergeMap((bla) => {
+          console.log(bla);
+          return concat(
+            of(this.userActions.loginSuccess(bla.data.user)),
+            of(this.navActions.hideAllModals())
+          )
+        })
       )
-    ));
+    ),
+    catchError((err) => {
+      console.log(err);
+      return of(this.userActions.loginFail())
+    }));
 
   constructor(private actions$: Actions,
               private store$: Store<AppState>,

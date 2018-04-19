@@ -27,4 +27,7 @@ export interface User {
   ttl: number;
   created: string;
   userId: string;
+  totalArticles?: {
+    count: number;
+  }
 }

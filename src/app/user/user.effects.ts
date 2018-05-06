@@ -3,7 +3,6 @@ import {concat} from 'rxjs/observable/concat';
 import {Injectable} from '@angular/core';
 import {UserActions} from './user.actions';
 import {UserService} from './user.service';
-import {User} from './user.state';
 import {NavActions} from '../nav/nav.actions';
 import {Actions, Effect, ofType} from '@ngrx/effects';
 import {select, Store} from '@ngrx/store';
@@ -13,7 +12,7 @@ import {mergeMap} from 'rxjs/operators/mergeMap';
 import {AppState} from '../root.reducer';
 
 @Injectable()
-export class UserEpics {
+export class UserEffects {
 
   @Effect() login$ = this.actions$.pipe(
     ofType(UserActions.LOGIN),
@@ -21,13 +20,13 @@ export class UserEpics {
     select(([action, storeState]) => storeState.user.loginForm),
     mergeMap((loginForm) =>
       this.userService.login(loginForm).pipe(
-        mergeMap((user: User) => concat(
-          of(this.userActions.loginSuccess(user)),
+        mergeMap((user) => concat(
+          of(this.userActions.loginSuccess(user.data.login)),
           of(this.navActions.hideAllModals())
-        )),
-        catchError(() => of(this.userActions.loginFail()))
+        ))
       )
-    ));
+    ),
+    catchError(() => of(this.userActions.loginFail())));
 
   constructor(private actions$: Actions,
               private store$: Store<AppState>,

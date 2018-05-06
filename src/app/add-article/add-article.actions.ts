@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {Article} from '../articles/article.model';
 
 @Injectable()
 export class AddArticleActions {
@@ -12,7 +13,7 @@ export class AddArticleActions {
 
   add = () => ({type: AddArticleActions.ADD});
 
-  addSuccess = () => ({type: AddArticleActions.ADD_SUCCESS});
+  addSuccess = (article: Article) => ({type: AddArticleActions.ADD_SUCCESS, payload: article});
 
   addFail = () => ({type: AddArticleActions.ADD_FAIL});
 

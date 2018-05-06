@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Apollo } from 'apollo-angular';
+import {Injectable} from '@angular/core';
+import {Apollo} from 'apollo-angular';
 import gql from 'graphql-tag';
-import { Observable } from 'rxjs/Observable';
-import { Article } from './article.model';
-import { AddArticleForm } from '../add-article/add-article.state';
+import {Observable} from 'rxjs/Observable';
+import {Article} from './article.model';
+import {AddArticleForm} from '../add-article/add-article.state';
 
 const query = gql`
   query {
@@ -27,13 +27,24 @@ const createArticle = gql`
   mutation($userId: String! $name: String!, $content: String!) {
     createArticle(userId: $userId name: $name content: $content) {
       id,
-      name
+      name,
+      user {
+        totalArticles {
+          count
+        }
+      }
     }
   }
 `;
 
 export interface MyArticlesResponse {
   myArticles: Article[]
+}
+
+export interface CreateArticleResponse {
+  data: {
+    createArticle: Article
+  }
 }
 
 @Injectable()
@@ -50,7 +61,7 @@ export class ArticlesService {
     return this.apollo.query<MyArticlesResponse>({query: myArticlesQuery, variables: {userId}});
   }
 
-  createArticle(userId: string, form: AddArticleForm): Observable<Article> {
+  createArticle(userId: string, form: AddArticleForm): Observable<CreateArticleResponse> {
     return this.apollo.mutate({
       mutation: createArticle,
       variables: {

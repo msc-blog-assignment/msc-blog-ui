@@ -14,6 +14,7 @@ type User {
   username: String!
   email: String!
   articles(userId: String): [Article!]!
+  totalArticles: Count!
   comments: [Comment]!
 }
 
@@ -42,12 +43,17 @@ type Login {
   ttl: Int!
   created: String!
   userId: String!
+  totalArticles: Count!
+}
+
+type Count {
+  count: Int!
 }
 
 type Mutation {
   login (username: String! password: String!): Login
 
-  createArticle (userId: String name: String content: String): Article
+  createArticle (userId: String! name: String content: String): Article
 }
 
 type Query {

@@ -14,7 +14,7 @@ const authLink = setContext((_, {headers}) => {
   return {
     headers: {
       ...headers,
-      authorization: user.user.id ? user.user.id : ''
+      authorization: user.user && user.user.id ? user.user.id : ''
     }
   }
 });

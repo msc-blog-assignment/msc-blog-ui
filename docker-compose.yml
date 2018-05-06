@@ -15,22 +15,21 @@ services:
     command: >
       /bin/bash -c "sleep 5; node ."
 
-  graphql:
-    image: mscblog/graphql:latest
+  consul:
+    image: mscblog/consul:latest
     ports:
-      - 3001:3030
-    environment:
-      USER_API: http://user-api:3000
-      ARTICLE_API: http://article-api:3000
+      - 5300:8080
     networks:
       - main
-    command: >
-      /bin/bash -c "sleep 5; node ."
 
   user-api:
     image: mscblog/user-api:latest
     ports:
-      - 3002:3000
+      - 3001:3000
+    environment:
+      SERVICE_DISCOVERY_HOST: ${consul_host}
+      SERVICE_DISCOVERY_PORT: ${consul_port}
+      HOSTNAME: user-api:3000
     networks:
       - main
     command: >
@@ -39,14 +38,41 @@ services:
   article-api:
     image: mscblog/article-api:latest
     ports:
-      - 3003:3000
+      - 3002:3000
+    environment:
+      SERVICE_DISCOVERY_HOST: ${consul_host}
+      SERVICE_DISCOVERY_PORT: ${consul_port}
+      HOSTNAME: article-api:3000
     networks:
       - main
     command: >
       /bin/bash -c "sleep 5; node ."
 
+  comments-api:
+    image: mscblog/comments-api:latest
+    ports:
+      - 3003:3000
+    environment:
+      SERVICE_DISCOVERY_HOST: ${consul_host}
+      SERVICE_DISCOVERY_PORT: ${consul_port}
+      HOSTNAME: comments-api:3000
+    networks:
+      - main
+    command: >
+      /bin/bash -c "sleep 5; node ."
+
+  graphql:
+      image: mscblog/graphql:latest
+      ports:
+        - 3004:3030
+      environment:
+        SERVICE_DISCOVERY_HOST: ${consul_host}
+        SERVICE_DISCOVERY_PORT: ${consul_port}
+        HOSTNAME: graphql:3030
+      networks:
+        - main
+      command: >
+        /bin/bash -c "sleep 10; node ."
+
 networks:
   main:
-
-volumes:
-  yarn:

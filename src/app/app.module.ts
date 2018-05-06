@@ -15,10 +15,11 @@ import {AppState, getRootReducer} from './root.reducer';
 import {storeLogger} from 'ngrx-store-logger';
 import {EffectsModule} from '@ngrx/effects';
 import {NavEpics} from './nav/nav.epics';
-import {UserEpics} from './user/user.epics';
+import {UserEffects} from './user/user.effects';
 import {LandingModule} from './landing/landing.module';
 import {SideNavModule} from './side-nav/side-nav.module';
 import {customStorage} from 'app/custom-local-storage';
+import {UserModule} from './user/user.module';
 
 export function logger(reducer: ActionReducer<AppState>): any {
   return storeLogger()(reducer);
@@ -40,12 +41,13 @@ export const metaReducers = [logger, localStorageSyncReducer];
     BrowserAnimationsModule,
     BrowserTransferStateModule,
     StoreModule.forRoot(getRootReducer(), {metaReducers}),
-    EffectsModule.forRoot([NavEpics, UserEpics]),
+    EffectsModule.forRoot([NavEpics, UserEffects]),
     MatSidenavModule,
     CoreModule,
     SharedModule,
 
     // Feature Modules
+    UserModule,
     NavModule,
     LandingModule,
     SideNavModule

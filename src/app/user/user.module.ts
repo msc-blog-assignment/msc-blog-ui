@@ -4,6 +4,7 @@ import {UserService} from './user.service';
 import {UserEffects} from './user.effects';
 import {UserActions} from './user.actions';
 import {CoreModule} from '../core/core.module';
+import {ArticlesService} from '../articles/articles.service';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import {CoreModule} from '../core/core.module';
   providers: [
     UserService,
     UserEffects,
-    UserActions
+    UserActions,
+    ArticlesService
   ]
 })
 export class UserModule {

@@ -7,6 +7,9 @@ import {User} from './user.state';
 const loginQuery = gql`
   mutation($username: String! $password: String!) {
     login(username: $username, password: $password) {
+      id
+      ttl
+      created
       userId
       totalArticles {
         count
@@ -17,7 +20,7 @@ const loginQuery = gql`
 
 export interface LoginResponse {
   data: {
-    user: User
+    login: User
   }
 }
 

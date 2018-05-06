@@ -1,11 +1,6 @@
 {
-  "/api/users/login": {
-    "target": "http://localhost:3000",
-    "secure": false,
-    "logLevel": "debug"
-  },
   "/graphql": {
-    "target": "http://localhost:3030",
+    "target": "http://localhost:3000",
     "secure": false,
     "logLevel": "debug"
   }

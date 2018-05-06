@@ -8,7 +8,6 @@ import {NavEpics} from './nav.epics';
 import {FormsModule} from '@angular/forms';
 import {UserModule} from '../user/user.module';
 import {CoreModule} from '../core/core.module';
-import {AdminOptionsComponent} from './admin-options/admin-options.component';
 import {
   MatButtonModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule,
   MatToolbarModule
@@ -33,7 +32,6 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     NavComponent,
     NavLoginComponent,
     LoginModalComponent,
-    AdminOptionsComponent,
     SideNavComponent
   ],
   exports: [

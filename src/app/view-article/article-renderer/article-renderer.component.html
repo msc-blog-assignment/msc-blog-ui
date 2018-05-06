@@ -1,0 +1,11 @@
+<div class="wrapper">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{article?.name}}</mat-card-title>
+      <mat-card-subtitle>{{article?.createdAt | date:'mediumDate'}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <markdown [data]="article?.content"></markdown>
+    </mat-card-content>
+  </mat-card>
+</div>

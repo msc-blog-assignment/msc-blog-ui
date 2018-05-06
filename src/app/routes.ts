@@ -27,6 +27,10 @@ export const routes = [
     canActivate: [IsLoggedInGuard]
   },
   {
+    path: 'article/:id',
+    loadChildren: 'app/view-article/view-article.module#ViewArticleModule'
+  },
+  {
     path: '**',
     redirectTo: '/'
   }

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {AppState} from '../root.reducer';
+import {SideNavActions} from './side-nav.actions';
 
 @Component({
   selector: 'app-side-nav',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideNavComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: Store<AppState>, private actions: SideNavActions) {
+  }
 
   ngOnInit() {
+  }
+
+  hideSideNav() {
+    this.store.dispatch(this.actions.hide());
   }
 
 }

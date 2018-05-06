@@ -1,3 +1,11 @@
-<p>
-  side-nav works!
-</p>
+<mat-list>
+  <mat-list-item (click)="hideSideNav()" [routerLink]="['articles']">
+    Articles
+  </mat-list-item>
+
+  <mat-list-item (click)="hideSideNav()" [routerLink]="['article', 'create']">
+    Create Article
+  </mat-list-item>
+
+  <app-my-articles></app-my-articles>
+</mat-list>

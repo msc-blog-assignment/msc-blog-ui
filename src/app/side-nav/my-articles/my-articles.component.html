@@ -1,3 +1,6 @@
-<p>
-  my-articles works!
-</p>
+<mat-list-item (click)="hideSideNav()" [routerLink]="['articles', 'my-articles']">
+  My articles&nbsp;&nbsp;
+  <mat-chip-list>
+    <mat-chip color="primary" selected="true">{{myArticleCount$ | async}}</mat-chip>
+  </mat-chip-list>
+</mat-list-item>

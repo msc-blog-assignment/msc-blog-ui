@@ -1,16 +1,19 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {SideNavComponent} from './side-nav.component';
-import {MatButtonModule, MatIconModule, MatListModule} from '@angular/material';
+import {MatButtonModule, MatChipsModule, MatIconModule, MatListModule, MatOptionModule} from '@angular/material';
 import {SideNavActions} from './side-nav.actions';
-import { MyArticlesComponent } from './my-articles/my-articles.component';
+import {MyArticlesComponent} from './my-articles/my-articles.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     MatListModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatChipsModule
   ],
   declarations: [SideNavComponent, MyArticlesComponent],
   exports: [SideNavComponent],

@@ -18,7 +18,7 @@ export class AddArticleEffects {
     select(([action, storeState]) => storeState),
     mergeMap((store) =>
       this.articlesService.createArticle(store.user.user.userId, store.addArticle.addArticleForm).pipe(
-        mergeMap(() => of(this.addArticleActions.addSuccess())),
+        mergeMap((response) => of(this.addArticleActions.addSuccess(response.data.createArticle))),
         catchError(() => of(this.addArticleActions.addFail()))
       )
     ));

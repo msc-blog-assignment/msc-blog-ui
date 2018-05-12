@@ -1,0 +1,10 @@
+<mat-form-field>
+    <textarea matInput
+              placeholder="Add Comment"
+              (keyup)="updateComment($event.target.value)"
+              [value]="comment">
+    </textarea>
+</mat-form-field>
+<button mat-button
+        (click)="addComment()">Add Comment
+</button>

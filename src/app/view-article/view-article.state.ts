@@ -1,11 +1,17 @@
 export const viewArticleState: ViewArticleState = {
   isFetching: false,
-  article: null
+  article: null,
+  isAddingComment: false,
+  addCommentForm: null
 };
 
 export interface ViewArticleState {
   isFetching: boolean;
-  article: ViewArticle
+  article: ViewArticle,
+  isAddingComment: boolean,
+  addCommentForm: {
+    comment: string;
+  }
 }
 
 export interface ViewArticle {

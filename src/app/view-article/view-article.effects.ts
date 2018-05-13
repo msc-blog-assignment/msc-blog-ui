@@ -7,6 +7,10 @@ import {map} from 'rxjs/operators/map';
 import {ArticlesService} from '../articles/articles.service';
 import {ViewArticleActions} from './view-article.actions';
 import {IAction} from '../root.action';
+import {withLatestFrom} from 'rxjs/operators/withLatestFrom';
+import {select, Store} from '@ngrx/store';
+import {ModuleState} from './module.state';
+import {CommentsService} from './comments.service';
 
 @Injectable()
 export class ViewArticleEffects {
@@ -20,9 +24,26 @@ export class ViewArticleEffects {
       )
     ));
 
-  constructor(private actions$: Actions,
+  @Effect() comment$ = this.actions$.pipe(
+    ofType<IAction>(ViewArticleActions.ADD_COMMENT),
+    withLatestFrom(this.store$),
+    select(([action, storeState]) => ({
+      userId: storeState.user.user.userId,
+      articleId: storeState.viewArticle.article.id,
+      comment: storeState.viewArticle.addCommentForm.comment,
+    })),
+    mergeMap(({userId, articleId, comment}) =>
+      this.commentService.createArticle(userId, articleId, comment).pipe(
+        map((article) => this.actions.addCommentOk()),
+        catchError((err) => of(this.actions.fetchFail(err)))
+      )
+    ));
+
+  constructor(private store$: Store<ModuleState>,
+              private actions$: Actions,
               private actions: ViewArticleActions,
-              private articlesService: ArticlesService) {
+              private articlesService: ArticlesService,
+              private commentService: CommentsService) {
   }
 
 }

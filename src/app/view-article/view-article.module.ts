@@ -8,8 +8,10 @@ import {StoreModule} from '@ngrx/store';
 import {reducer} from './view-article.reducer';
 import {ViewArticleEffects} from './view-article.effects';
 import {EffectsModule} from '@ngrx/effects';
-import {MatCardModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 import {MarkdownModule} from 'ngx-markdown';
+import {AddCommentComponent} from './add-comment/add-comment.component';
+import {CommentsService} from './comments.service';
 
 const routes: Routes = [
   {
@@ -22,6 +24,9 @@ const routes: Routes = [
   imports: [
     CommonModule,
     MatCardModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
     MarkdownModule.forRoot(),
     RouterModule.forChild(routes),
     StoreModule.forFeature('viewArticle', reducer),
@@ -29,11 +34,13 @@ const routes: Routes = [
   ],
   declarations: [
     ViewArticleComponent,
-    ArticleRendererComponent
+    ArticleRendererComponent,
+    AddCommentComponent
   ],
   providers: [
     ViewArticleActions,
-    ViewArticleEffects
+    ViewArticleEffects,
+    CommentsService
   ]
 })
 export class ViewArticleModule {

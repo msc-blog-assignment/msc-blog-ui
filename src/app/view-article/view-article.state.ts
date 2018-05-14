@@ -27,5 +27,14 @@ export interface ViewArticle {
     articles: {
       name: string;
     }
+  },
+  comments: Comment[]
+}
+
+export interface Comment {
+  comment: string;
+  user: {
+    id: string;
+    username: string;
   }
 }

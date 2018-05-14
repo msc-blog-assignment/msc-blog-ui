@@ -24,7 +24,7 @@ export class CommentsService {
   constructor(private apollo: Apollo) {
   }
 
-  createArticle(userId: string, articleId: string, comment: string): Observable<CommentResponse> {
+  comment(userId: string, articleId: string, comment: string): Observable<CommentResponse> {
     return this.apollo.mutate({
       mutation: commentQuery,
       variables: {

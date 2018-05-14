@@ -12,6 +12,8 @@ import {MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule} from
 import {MarkdownModule} from 'ngx-markdown';
 import {AddCommentComponent} from './add-comment/add-comment.component';
 import {CommentsService} from './comments.service';
+import { CommentListComponent } from './comment-list/comment-list.component';
+import { CommentCardComponent } from './comment-card/comment-card.component';
 
 const routes: Routes = [
   {
@@ -35,7 +37,9 @@ const routes: Routes = [
   declarations: [
     ViewArticleComponent,
     ArticleRendererComponent,
-    AddCommentComponent
+    AddCommentComponent,
+    CommentListComponent,
+    CommentCardComponent
   ],
   providers: [
     ViewArticleActions,

@@ -10,6 +10,7 @@ import { UserService } from '../user/user.service';
 import { mergeMap } from 'rxjs/operators/mergeMap';
 import { catchError } from 'rxjs/operators/catchError';
 import { of } from 'rxjs/observable/of';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class NavEffects {
@@ -36,7 +37,10 @@ export class NavEffects {
     ofType(NavActions.LOGOUT),
     mergeMap(() =>
       this.userService.logout().pipe(
-        mergeMap(() => of(this.actions.logoutOk())),
+        mergeMap(() => {
+          this.router.navigate(['/']);
+          return of(this.actions.logoutOk());
+        }),
         catchError((error) => of(this.actions.logoutFail(error)))
       )
     ));
@@ -44,6 +48,7 @@ export class NavEffects {
   constructor(private actions$: Actions,
               private userService: UserService,
               private actions: NavActions,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private router: Router) {
   }
 }

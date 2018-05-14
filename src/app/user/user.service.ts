@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import gql from 'graphql-tag';
-import {Apollo} from 'apollo-angular';
-import {User} from './user.state';
+import { Apollo } from 'apollo-angular';
+import { User } from './user.state';
 
 const loginQuery = gql`
   mutation($username: String! $password: String!) {
@@ -14,6 +14,14 @@ const loginQuery = gql`
       totalArticles {
         count
       }
+    }
+  }
+`;
+
+const logoutQuery = gql`
+  mutation {
+    logout {
+      ok
     }
   }
 `;
@@ -35,6 +43,10 @@ export class UserService {
       mutation: loginQuery,
       variables: {username, password}
     });
+  }
+
+  logout(): Observable<any> {
+    return this.apollo.mutate({mutation: logoutQuery});
   }
 
 }

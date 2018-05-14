@@ -1,11 +1,15 @@
-import {Injectable} from '@angular/core';
-import {NavActions} from './nav.actions';
-import {MatDialog} from '@angular/material';
-import {LoginModalComponent} from './nav-login/login-modal/login-modal.component';
-import {Action} from '@ngrx/store';
-import {Actions, Effect, ofType} from '@ngrx/effects';
-import {map} from 'rxjs/operators/map';
-import {Observable} from 'rxjs/Observable';
+import { Injectable } from '@angular/core';
+import { NavActions } from './nav.actions';
+import { MatDialog } from '@angular/material';
+import { LoginModalComponent } from './nav-login/login-modal/login-modal.component';
+import { Action } from '@ngrx/store';
+import { Actions, Effect, ofType } from '@ngrx/effects';
+import { map } from 'rxjs/operators/map';
+import { Observable } from 'rxjs/Observable';
+import { UserService } from '../user/user.service';
+import { mergeMap } from 'rxjs/operators/mergeMap';
+import { catchError } from 'rxjs/operators/catchError';
+import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class NavEpics {
@@ -28,6 +32,18 @@ export class NavEpics {
       return {type: 'UNKNOWN'};
     }));
 
-  constructor(private actions$: Actions, public dialog: MatDialog) {
+  @Effect() logout$ = this.actions$.pipe(
+    ofType(NavActions.LOGOUT),
+    mergeMap(() =>
+      this.userService.logout().pipe(
+        mergeMap(() => of(this.actions.logoutOk())),
+        catchError(() => of(this.actions.logoutFail()))
+      )
+    ));
+
+  constructor(private actions$: Actions,
+              private userService: UserService,
+              private actions: NavActions,
+              public dialog: MatDialog) {
   }
 }

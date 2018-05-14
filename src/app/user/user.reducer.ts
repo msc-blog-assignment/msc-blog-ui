@@ -1,7 +1,7 @@
-import {UserState, userState} from './user.state';
-import {UserActions} from './user.actions';
-import {NavActions} from '../nav/nav.actions';
-import {AddArticleActions} from '../add-article/add-article.actions';
+import { UserState, userState } from './user.state';
+import { UserActions } from './user.actions';
+import { NavActions } from '../nav/nav.actions';
+import { AddArticleActions } from '../add-article/add-article.actions';
 
 export function userReducer(state: UserState = userState, action): UserState {
   switch (action.type) {
@@ -19,6 +19,8 @@ export function userReducer(state: UserState = userState, action): UserState {
       return {...state, loginForm: {...state.loginForm, password: action.password}};
     case AddArticleActions.ADD_SUCCESS:
       return {...state, user: {...state.user, totalArticles: {count: action.payload.user.totalArticles.count}}};
+    case NavActions.LOGOUT_OK:
+      return {...state, isLoggedIn: false, user: null};
     default:
       return state;
   }

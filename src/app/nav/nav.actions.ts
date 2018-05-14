@@ -32,7 +32,7 @@ export class NavActions {
     return {type: NavActions.LOGOUT_OK};
   }
 
-  logoutFail() {
-    return {type: NavActions.LOGOUT_FAIL};
+  logoutFail(error) {
+    return {type: NavActions.LOGOUT_FAIL, error};
   }
 }

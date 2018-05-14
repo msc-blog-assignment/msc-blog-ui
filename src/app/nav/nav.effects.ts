@@ -12,7 +12,7 @@ import { catchError } from 'rxjs/operators/catchError';
 import { of } from 'rxjs/observable/of';
 
 @Injectable()
-export class NavEpics {
+export class NavEffects {
 
   @Effect() showLoginModal$: Observable<Action> = this.actions$.pipe(
     ofType(NavActions.SHOW_LOGIN_MODAL),
@@ -37,7 +37,7 @@ export class NavEpics {
     mergeMap(() =>
       this.userService.logout().pipe(
         mergeMap(() => of(this.actions.logoutOk())),
-        catchError(() => of(this.actions.logoutFail()))
+        catchError((error) => of(this.actions.logoutFail(error)))
       )
     ));
 

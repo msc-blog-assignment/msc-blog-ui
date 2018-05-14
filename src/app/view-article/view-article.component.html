@@ -1,3 +1,5 @@
 <app-article-renderer [article]="(viewArticleState$ | async)?.article"></app-article-renderer>
 
 <app-add-comment [comment]="(viewArticleState$ | async)?.addCommentForm?.comment"></app-add-comment>
+
+<app-comment-list [comments]="(viewArticleState$ | async)?.article?.comments"></app-comment-list>

@@ -1,11 +1,11 @@
-import {Injectable} from '@angular/core';
-import {Apollo} from 'apollo-angular';
+import { Injectable } from '@angular/core';
+import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-import {Observable} from 'rxjs/Observable';
-import {Article} from './article.model';
-import {AddArticleForm} from '../add-article/add-article.state';
-import {ViewArticle} from '../view-article/view-article.state';
-import {ApolloQueryResult} from 'apollo-client';
+import { Observable } from 'rxjs/Observable';
+import { Article } from './article.model';
+import { AddArticleForm } from '../add-article/add-article.state';
+import { ViewArticle } from '../view-article/view-article.state';
+import { ApolloQueryResult } from 'apollo-client';
 
 const query = gql`
   query {
@@ -30,6 +30,23 @@ const fetchArticleById = gql`
         },
         articles {
           name
+        }
+      }
+      comments {
+        id
+        comment
+        userId
+        user {
+          id
+          username
+        }
+        responses {
+          id
+          response
+          user {
+            id
+            username
+          }
         }
       }
     }

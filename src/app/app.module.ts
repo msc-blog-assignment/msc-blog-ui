@@ -14,7 +14,7 @@ import {ActionReducer, StoreModule} from '@ngrx/store';
 import {AppState, getRootReducer} from './root.reducer';
 import {storeLogger} from 'ngrx-store-logger';
 import {EffectsModule} from '@ngrx/effects';
-import {NavEpics} from './nav/nav.epics';
+import {NavEffects} from './nav/nav.effects';
 import {UserEffects} from './user/user.effects';
 import {LandingModule} from './landing/landing.module';
 import {SideNavModule} from './side-nav/side-nav.module';
@@ -41,7 +41,7 @@ export const metaReducers = [logger, localStorageSyncReducer];
     BrowserAnimationsModule,
     BrowserTransferStateModule,
     StoreModule.forRoot(getRootReducer(), {metaReducers}),
-    EffectsModule.forRoot([NavEpics, UserEffects]),
+    EffectsModule.forRoot([NavEffects, UserEffects]),
     MatSidenavModule,
     CoreModule,
     SharedModule,

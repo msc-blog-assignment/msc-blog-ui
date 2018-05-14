@@ -1,23 +1,21 @@
-import {Component, OnInit} from '@angular/core';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../root.reducer';
-import {Observable} from 'rxjs/Observable';
-import {SideNavActions} from '../side-nav.actions';
+import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../root.reducer';
+import { Observable } from 'rxjs/Observable';
+import { SideNavActions } from '../side-nav.actions';
+import { User } from '../../user/user.state';
 
 @Component({
   selector: 'app-my-articles',
   templateUrl: './my-articles.component.html',
   styleUrls: ['./my-articles.component.css']
 })
-export class MyArticlesComponent implements OnInit {
+export class MyArticlesComponent {
 
-  myArticleCount$: Observable<number>;
+  user$: Observable<User>;
 
   constructor(private store: Store<AppState>, private actions: SideNavActions) {
-    this.myArticleCount$ = store.select('user', 'user', 'totalArticles', 'count');
-  }
-
-  ngOnInit() {
+    this.user$ = store.select('user', 'user');
   }
 
   hideSideNav() {

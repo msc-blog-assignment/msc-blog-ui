@@ -29,5 +29,11 @@ export interface User {
   userId: string;
   totalArticles?: {
     count: number;
-  }
+  },
+  avatar: Avatar
+}
+
+export interface Avatar {
+  userId: string,
+  avatar: string
 }

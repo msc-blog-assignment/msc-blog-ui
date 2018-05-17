@@ -1,0 +1,13 @@
+<div class="wrapper">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Avatar</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <input id="file-field"
+             name="file-field"
+             (change)="upload($event.target.files[0])"
+             type="file">
+    </mat-card-content>
+  </mat-card>
+</div>

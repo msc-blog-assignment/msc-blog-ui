@@ -1,16 +1,16 @@
-import { of } from 'rxjs/observable/of';
-import { Injectable } from '@angular/core';
-import { Actions, Effect, ofType } from '@ngrx/effects';
-import { catchError } from 'rxjs/operators/catchError';
-import { mergeMap } from 'rxjs/operators/mergeMap';
-import { map } from 'rxjs/operators/map';
-import { ArticlesService } from '../articles/articles.service';
-import { ViewArticleActions } from './view-article.actions';
-import { IAction } from '../root.action';
-import { withLatestFrom } from 'rxjs/operators/withLatestFrom';
-import { select, Store } from '@ngrx/store';
-import { ModuleState } from './module.state';
-import { CommentsService } from './comments.service';
+import {of} from 'rxjs/observable/of';
+import {Injectable} from '@angular/core';
+import {Actions, Effect, ofType} from '@ngrx/effects';
+import {catchError} from 'rxjs/operators/catchError';
+import {mergeMap} from 'rxjs/operators/mergeMap';
+import {map} from 'rxjs/operators/map';
+import {ArticlesService} from '../articles/articles.service';
+import {ViewArticleActions} from './view-article.actions';
+import {IAction} from '../root.action';
+import {withLatestFrom} from 'rxjs/operators/withLatestFrom';
+import {select, Store} from '@ngrx/store';
+import {ModuleState} from './module.state';
+import {CommentsService} from './comments.service';
 
 @Injectable()
 export class ViewArticleEffects {

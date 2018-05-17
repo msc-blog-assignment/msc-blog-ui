@@ -52,6 +52,7 @@
     "apollo-cache-inmemory": "^1.1.12",
     "apollo-client": "^2.2.8",
     "apollo-link-context": "^1.0.7",
+    "apollo-upload-client": "^8.0.0",
     "cfenv": "^1.0.4",
     "core-js": "^2.5.3",
     "font-awesome": "^4.7.0",

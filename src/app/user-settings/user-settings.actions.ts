@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class UserSettingsActions {
@@ -7,15 +7,15 @@ export class UserSettingsActions {
   static UPLOAD_AVATAR_OK = 'user-settings/UPLOAD_AVATAR_OK';
   static UPLOAD_AVATAR_FAIL = 'user-settings/UPLOAD_AVATAR_FAIL';
 
-  uploadAvatar() {
-    return {type: UserSettingsActions.UPLOAD_AVATAR};
+  uploadAvatar(file) {
+    return {type: UserSettingsActions.UPLOAD_AVATAR, payload: file};
   }
 
   uploadAvatarOk() {
     return {type: UserSettingsActions.UPLOAD_AVATAR_OK};
   }
 
-  uploadAvatarFail() {
-    return {type: UserSettingsActions.UPLOAD_AVATAR_FAIL};
+  uploadAvatarFail(error) {
+    return {type: UserSettingsActions.UPLOAD_AVATAR_FAIL, error};
   }
 }

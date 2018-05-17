@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
 import gql from 'graphql-tag';
-import { Apollo } from 'apollo-angular';
-import { User } from './user.state';
+import {Apollo} from 'apollo-angular';
+import {User} from './user.state';
+import {FetchResult} from 'apollo-link';
 
 const loginQuery = gql`
   mutation($username: String! $password: String!) {
@@ -26,19 +27,13 @@ const logoutQuery = gql`
   }
 `;
 
-export interface LoginResponse {
-  data: {
-    login: User
-  }
-}
-
 @Injectable()
 export class UserService {
 
   constructor(private apollo: Apollo) {
   }
 
-  login({username, password}: { username: string, password: string }): Observable<LoginResponse> {
+  login({username, password}: { username: string, password: string }): Observable<FetchResult<User>> {
     return this.apollo.mutate({
       mutation: loginQuery,
       variables: {username, password}

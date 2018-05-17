@@ -1,5 +1,5 @@
 export const userSettingsState: UserSettingsState = {
-  isUploadingAvatar: false
+  isUploadingAvatar: false,
 };
 
 export interface UserSettingsState {

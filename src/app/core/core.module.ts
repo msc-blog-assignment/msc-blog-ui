@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { HttpLink, HttpLinkModule } from 'apollo-angular-link-http';
+import { createUploadLink } from 'apollo-upload-client'
 import { LoadingComponent } from './loading/loading.component';
 import { Apollo, ApolloModule } from 'apollo-angular';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpLink, HttpLinkModule } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { setContext } from 'apollo-link-context';
 import { UserState } from '../user/user.state';
@@ -18,6 +19,8 @@ const authLink = setContext((_, {headers}) => {
     }
   }
 });
+
+const uploadLink = createUploadLink(/* Options */)
 
 @NgModule({
   imports: [
@@ -41,7 +44,7 @@ export class CoreModule {
               httpLink: HttpLink) {
 
     apollo.create({
-      link: authLink.concat(httpLink.create({uri: '/graphql'})),
+      link: authLink.concat(httpLink.create({uri: '/graphql'})).concat(uploadLink),
       cache: new InMemoryCache({}),
       defaultOptions: {
         query: {

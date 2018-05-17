@@ -1,3 +1,5 @@
+scalar Upload
+
 type Article {
   id: ID!
   createdAt: String!
@@ -16,6 +18,7 @@ type User {
   articles(userId: String): [Article!]!
   totalArticles: Count!
   comments: [Comment]!
+  avatar: Avatar!
 }
 
 type Comment {
@@ -55,6 +58,19 @@ type Logout {
   ok: Boolean!
 }
 
+type Avatar {
+  userId: String!
+  avatar: String!
+}
+
+type File {
+  id: ID!
+  path: String!
+  filename: String!
+  mimetype: String!
+  encoding: String!
+}
+
 type Mutation {
   login (username: String! password: String!): Login
 
@@ -67,6 +83,9 @@ type Mutation {
   comment (userId: String! articleId: String! comment: String!): Comment
 
   respondToComment (userId: String! articleId: String! commentId: String! response: String!): Response
+
+  # Avatar
+  uploadAvatar(userId: String! file: Upload!): Avatar
 }
 
 type Query {
@@ -79,5 +98,6 @@ type Query {
   articles: [Article]!
   myArticles(id: String!): [Article]!
 
-  # Comment
+  # Avatar
+  avatar(userId: String!): Avatar!
 }

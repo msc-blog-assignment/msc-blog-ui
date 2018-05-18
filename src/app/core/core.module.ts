@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {Inject, NgModule, PLATFORM_ID} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {HttpLink, HttpLinkModule} from 'apollo-angular-link-http';
@@ -10,6 +10,7 @@ import {InMemoryCache} from 'apollo-cache-inmemory';
 import {setContext} from 'apollo-link-context';
 import {UserState} from '../user/user.state';
 import {ApolloLink} from 'apollo-link';
+import {isPlatformBrowser} from '@angular/common';
 
 const authLink = setContext((_, {headers}) => {
   const user: UserState = JSON.parse(localStorage.getItem('user'));
@@ -39,15 +40,22 @@ const authLink = setContext((_, {headers}) => {
 })
 export class CoreModule {
 
-  constructor(apollo: Apollo,
+  constructor(@Inject(PLATFORM_ID) platformId: string,
+              apollo: Apollo,
               httpLink: HttpLink) {
-
-    const link = ApolloLink.from([
-      createUploadLink({uri: '/graphql'}),
-      httpLink.create({uri: '/graphql'}),
-      authLink
-    ]);
-
+    let link;
+    if (isPlatformBrowser(platformId)) {
+      link = ApolloLink.from([
+        createUploadLink({uri: '/graphql'}),
+        httpLink.create({uri: '/graphql'}),
+        authLink
+      ]);
+    } else {
+      link = ApolloLink.from([
+        httpLink.create({uri: '/graphql'}),
+        authLink
+      ]);
+    }
     apollo.create({
       link,
       cache: new InMemoryCache({}),

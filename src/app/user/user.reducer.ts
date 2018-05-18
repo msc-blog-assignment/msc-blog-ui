@@ -23,6 +23,7 @@ export function userReducer(state: UserState = userState, action): UserState {
     case NavActions.LOGOUT_OK:
       return {...state, isLoggedIn: false, user: null};
     case UserSettingsActions.UPLOAD_AVATAR_OK:
+      console.log(action.payload);
       return {...state, user: {...state.user, avatar: action.payload}};
     default:
       return state;

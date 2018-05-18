@@ -83,7 +83,6 @@ services:
 
   upload-api:
     image: mscblog/upload-api:latest
-    restart: always
     ports:
       - 3005:3000
     environment:
@@ -101,7 +100,6 @@ services:
 
   avatar-api:
     image: mscblog/avatar-api:latest
-    restart: always
     ports:
       - 3006:3000
     environment:

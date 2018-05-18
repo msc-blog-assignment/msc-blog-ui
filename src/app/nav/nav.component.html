@@ -2,5 +2,7 @@
   <app-nav-login *ngIf="!(user$ | async)?.isLoggedIn"></app-nav-login>
   <app-side-nav *ngIf="(user$ | async)?.isLoggedIn"></app-side-nav>
 
+  <span class="fill-space"></span>
+
   <app-user-options *ngIf="(user$ | async)?.isLoggedIn"></app-user-options>
 </mat-toolbar>

@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
-import {ViewArticleActions} from '../view-article/view-article.actions';
 import {mergeMap} from 'rxjs/operators/mergeMap';
 import {catchError} from 'rxjs/operators/catchError';
 import {map} from 'rxjs/operators/map';
@@ -23,7 +22,7 @@ export class UserSettingsEffects {
       file: action.payload
     })),
     mergeMap(({userId, file}) => this.service.uploadAvatar(userId, file).pipe(
-      map((avatar) => this.actions.uploadAvatarOk()),
+      map((avatar) => this.actions.uploadAvatarOk(avatar.data.uploadAvatar)),
       catchError((err) => of(this.actions.uploadAvatarFail(err)))
       )
     ));

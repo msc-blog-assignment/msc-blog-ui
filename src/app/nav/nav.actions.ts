@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class NavActions {
@@ -11,6 +11,8 @@ export class NavActions {
   static LOGOUT = 'nav/LOGOUT';
   static LOGOUT_OK = 'nav/LOGOUT_OK';
   static LOGOUT_FAIL = 'nav/LOGOUT_FAIL';
+
+  static USER_AVATAR_FAILED_TO_LOAD = 'nav/USER_AVATAR_FAILED_TO_LOAD';
 
   hideAllModals() {
     return {type: NavActions.HIDE_ALL_MODALS};
@@ -34,5 +36,9 @@ export class NavActions {
 
   logoutFail(error) {
     return {type: NavActions.LOGOUT_FAIL, error};
+  }
+
+  userAvatarFailedToLoad() {
+    return {type: NavActions.USER_AVATAR_FAILED_TO_LOAD};
   }
 }

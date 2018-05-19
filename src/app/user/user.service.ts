@@ -27,6 +27,9 @@ const loginQuery = gql`
       totalArticles {
         count
       }
+      avatar {
+        avatar
+      }
     }
   }
 `;

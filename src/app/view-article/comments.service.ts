@@ -9,6 +9,11 @@ const commentQuery = gql`
   mutation comment ($userId: String! $articleId: String! $comment: String!) {
     comment(userId: $userId articleId: $articleId comment: $comment) {
       id
+      user {
+        avatar {
+          avatar
+        }
+      }
     }
   }
 `;

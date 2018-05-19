@@ -26,6 +26,9 @@ export interface ViewArticle {
     },
     articles: {
       name: string;
+    },
+    avatar: {
+      avatar: string;
     }
   },
   comments: Comment[]
@@ -36,5 +39,8 @@ export interface Comment {
   user: {
     id: string;
     username: string;
+    avatar: {
+      avatar: string;
+    }
   }
 }

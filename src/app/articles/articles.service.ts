@@ -28,9 +28,12 @@ const fetchArticleById = gql`
         username,
         totalArticles {
           count
-        },
+        }
         articles {
           name
+        }
+        avatar {
+          avatar
         }
       }
       comments {

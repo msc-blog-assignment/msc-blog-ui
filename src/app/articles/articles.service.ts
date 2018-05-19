@@ -59,6 +59,13 @@ const myArticlesQuery = gql`
     myArticles(id: $userId) {
       id
       name
+      createdAt
+      user {
+        username
+        avatar {
+          avatar
+        }
+      }
     }
   }
 `;

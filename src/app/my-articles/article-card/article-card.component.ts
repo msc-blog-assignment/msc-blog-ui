@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Article } from '../../articles/article.model';
+import {Component, Input, OnInit} from '@angular/core';
+import {MyArticle} from '../my-articles.state';
 
 @Component({
   selector: 'app-article-card',
@@ -8,9 +8,10 @@ import { Article } from '../../articles/article.model';
 })
 export class ArticleCardComponent implements OnInit {
 
-  @Input() article: Article;
+  @Input() article: MyArticle;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

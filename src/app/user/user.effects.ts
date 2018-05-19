@@ -26,7 +26,8 @@ export class UserEffects {
         ))
       )
     ),
-    catchError(() => of(this.userActions.loginFail())));
+    catchError(() => of(this.userActions.loginFail()))
+  );
 
   constructor(private actions$: Actions,
               private store$: Store<AppState>,

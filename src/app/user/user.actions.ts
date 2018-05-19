@@ -11,6 +11,8 @@ export class UserActions {
   static UPDATE_LOGIN_USERNAME = 'user/UPDATE_LOGIN_USERNAME';
   static UPDATE_LOGIN_PASSWORD = 'user/UPDATE_LOGIN_PASSWORD';
 
+  static CHECK_LOGGED_IN = 'user/CHECK_LOGGED_IN';
+
   login = () => ({type: UserActions.LOGIN});
 
   loginSuccess = (user: User) => ({type: UserActions.LOGIN_SUCCESS, user});

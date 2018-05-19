@@ -1,5 +1,3 @@
-import { Article } from '../articles/article.model';
-
 export const myArticlesState: MyArticlesState = {
   isFetchingArticles: false,
   articles: []
@@ -7,5 +5,17 @@ export const myArticlesState: MyArticlesState = {
 
 export interface MyArticlesState {
   isFetchingArticles: boolean;
-  articles: Article[]
+  articles: MyArticle[]
+}
+
+export interface MyArticle {
+  id: string;
+  name: string;
+  createdAt: string;
+  user: {
+    username: string
+    avatar: {
+      avatar: string;
+    }
+  }
 }

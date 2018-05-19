@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
-import { NavActions } from './nav.actions';
-import { MatDialog } from '@angular/material';
-import { LoginModalComponent } from './nav-login/login-modal/login-modal.component';
-import { Action } from '@ngrx/store';
-import { Actions, Effect, ofType } from '@ngrx/effects';
-import { map } from 'rxjs/operators/map';
-import { Observable } from 'rxjs/Observable';
-import { UserService } from '../user/user.service';
-import { mergeMap } from 'rxjs/operators/mergeMap';
-import { catchError } from 'rxjs/operators/catchError';
-import { of } from 'rxjs/observable/of';
-import { Router } from '@angular/router';
+import {Injectable} from '@angular/core';
+import {NavActions} from './nav.actions';
+import {MatDialog} from '@angular/material';
+import {LoginModalComponent} from './nav-login/login-modal/login-modal.component';
+import {Action} from '@ngrx/store';
+import {Actions, Effect, ofType} from '@ngrx/effects';
+import {map} from 'rxjs/operators/map';
+import {Observable} from 'rxjs/Observable';
+import {UserService} from '../user/user.service';
+import {mergeMap} from 'rxjs/operators/mergeMap';
+import {catchError} from 'rxjs/operators/catchError';
+import {of} from 'rxjs/observable/of';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class NavEffects {
@@ -41,7 +41,10 @@ export class NavEffects {
           this.router.navigate(['/']);
           return of(this.actions.logoutOk());
         }),
-        catchError((error) => of(this.actions.logoutFail(error)))
+        catchError(() => {
+          this.router.navigate(['/']);
+          return of(this.actions.logoutOk())
+        })
       )
     ));
 

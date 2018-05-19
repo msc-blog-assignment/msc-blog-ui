@@ -27,6 +27,7 @@ export interface User {
   ttl: number;
   created: string;
   userId: string;
+  me: Me,
   totalArticles?: {
     count: number;
   },
@@ -34,6 +35,10 @@ export interface User {
 }
 
 export interface Avatar {
-  userId: string,
-  avatar: string
+  userId: string;
+  avatar: string;
+}
+
+export interface Me {
+  username: string;
 }

@@ -12,6 +12,9 @@ const loginQuery = gql`
       ttl
       created
       userId
+      me {
+        username
+      }
       totalArticles {
         count
       }

@@ -11,6 +11,7 @@ import {withLatestFrom} from 'rxjs/operators/withLatestFrom';
 import {select, Store} from '@ngrx/store';
 import {ModuleState} from './module.state';
 import {CommentsService} from './comments.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Injectable()
 export class ViewArticleEffects {
@@ -34,13 +35,20 @@ export class ViewArticleEffects {
     })),
     mergeMap(({userId, articleId, comment}) =>
       this.commentService.comment(userId, articleId, comment).pipe(
-        map((article) => this.actions.addCommentOk()),
-        catchError((err) => of(this.actions.fetchFail(err)))
+        map((response) => {
+          this.toastr.success('Comment Added', 'Success');
+          return this.actions.addCommentOk(response.data.comment);
+        }),
+        catchError((err) => {
+          this.toastr.error('Unable to add comment, please try again', 'Error');
+          return of(this.actions.fetchFail(err));
+        })
       )
     ));
 
   constructor(private store$: Store<ModuleState>,
               private actions$: Actions,
+              private toastr: ToastrService,
               private actions: ViewArticleActions,
               private articlesService: ArticlesService,
               private commentService: CommentsService) {

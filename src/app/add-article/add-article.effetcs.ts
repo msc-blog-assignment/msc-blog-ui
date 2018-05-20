@@ -8,6 +8,7 @@ import {withLatestFrom} from 'rxjs/operators/withLatestFrom';
 import {select, Store} from '@ngrx/store';
 import {AddArticleActions} from './add-article.actions';
 import {ModuleState} from './module.state';
+import {ToastrService} from 'ngx-toastr';
 
 @Injectable()
 export class AddArticleEffects {
@@ -18,13 +19,20 @@ export class AddArticleEffects {
     select(([action, storeState]) => storeState),
     mergeMap((store) =>
       this.articlesService.createArticle(store.user.user.userId, store.addArticle.addArticleForm).pipe(
-        mergeMap((response) => of(this.addArticleActions.addSuccess(response.data.createArticle))),
-        catchError(() => of(this.addArticleActions.addFail()))
+        mergeMap((response) => {
+          this.toastr.success('Article added', 'Success');
+          return of(this.addArticleActions.addSuccess(response.data.createArticle))
+        }),
+        catchError(() => {
+          this.toastr.error('Creating article failed, please try again', 'Error');
+          return of(this.addArticleActions.addFail())
+        })
       )
     ));
 
   constructor(private actions$: Actions,
               private store$: Store<ModuleState>,
+              private toastr: ToastrService,
               private addArticleActions: AddArticleActions,
               private articlesService: ArticlesService) {
   }

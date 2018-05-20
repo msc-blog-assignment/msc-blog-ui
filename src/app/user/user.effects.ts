@@ -10,6 +10,7 @@ import {withLatestFrom} from 'rxjs/operators/withLatestFrom';
 import {catchError} from 'rxjs/operators/catchError';
 import {mergeMap} from 'rxjs/operators/mergeMap';
 import {AppState} from '../root.reducer';
+import {ToastrService} from 'ngx-toastr';
 
 @Injectable()
 export class UserEffects {
@@ -23,14 +24,18 @@ export class UserEffects {
         mergeMap((user) => concat(
           of(this.userActions.loginSuccess(user.data.login)),
           of(this.navActions.hideAllModals())
-        ))
+        )),
+        catchError(() => {
+          this.toastr.error('Invalid Credentials', 'Error');
+          return of(this.userActions.loginFail())
+        })
       )
-    ),
-    catchError(() => of(this.userActions.loginFail()))
+    )
   );
 
   constructor(private actions$: Actions,
               private store$: Store<AppState>,
+              private toastr: ToastrService,
               private userActions: UserActions,
               private navActions: NavActions,
               private userService: UserService) {

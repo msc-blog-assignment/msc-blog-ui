@@ -36,8 +36,12 @@ export interface ViewArticle {
 
 export interface Comment {
   comment: string;
+  createdAt: string;
   user: {
     id: string;
     username: string;
+    avatar: {
+      avatar: string;
+    }
   }
 }

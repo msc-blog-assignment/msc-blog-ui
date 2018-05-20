@@ -40,9 +40,13 @@ const fetchArticleById = gql`
         id
         comment
         userId
+        createdAt
         user {
           id
           username
+          avatar {
+            avatar
+          }
         }
         responses {
           id

@@ -30,8 +30,8 @@ export class ViewArticleActions {
     return {type: ViewArticleActions.ADD_COMMENT};
   }
 
-  addCommentOk() {
-    return {type: ViewArticleActions.ADD_COMMENT_OK};
+  addCommentOk(comment: Comment) {
+    return {type: ViewArticleActions.ADD_COMMENT_OK, payload: comment};
   }
 
   addCommentFail(error) {

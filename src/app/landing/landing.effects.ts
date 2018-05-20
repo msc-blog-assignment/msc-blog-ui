@@ -13,6 +13,7 @@ import {catchError} from 'rxjs/operators/catchError';
 import {concat} from 'rxjs/observable/concat';
 import {of} from 'rxjs/observable/of';
 import {AppState} from '../root.reducer';
+import {ToastrService} from 'ngx-toastr';
 
 @Injectable()
 export class LandingEffects {
@@ -41,18 +42,24 @@ export class LandingEffects {
     select(([action, storeState]) => storeState.landing.signupForm),
     mergeMap((signupForm) =>
       this.userService.signup(signupForm).pipe(
-        mergeMap(() => concat(
-          of(this.actions.signupOk()),
-          of(this.actions.hideSignupModal())
-        )),
-        catchError((error) => of(this.actions.signupFail(error)))
+        mergeMap(() => {
+          this.toastr.success('Successfully signed up', 'Success');
+          return concat(
+            of(this.actions.signupOk()),
+            of(this.actions.hideSignupModal())
+          )
+        }),
+        catchError((error) => {
+          this.toastr.error('Unable to sign up, please try again', 'Error');
+          return of(this.actions.signupFail(error))
+        })
       )
-    ),
-    catchError((error) => of(this.actions.signupFail(error)))
+    )
   );
 
   constructor(private actions$: Actions,
               private store$: Store<AppState>,
+              private toastr: ToastrService,
               private userService: UserService,
               private actions: LandingActions,
               public dialog: MatDialog) {

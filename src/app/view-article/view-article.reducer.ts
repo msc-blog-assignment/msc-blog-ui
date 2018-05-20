@@ -13,7 +13,7 @@ export function reducer(state: ViewArticleState = viewArticleState, action: IAct
     case ViewArticleActions.ADD_COMMENT:
       return {...state, isAddingComment: true};
     case ViewArticleActions.ADD_COMMENT_OK:
-      return {...state, isAddingComment: false};
+      return {...state, isAddingComment: false, article: {...state.article, comments: [action.payload, ...state.article.comments]}};
     case ViewArticleActions.ADD_COMMENT_FAIL:
       return {...state, isAddingComment: false};
     case ViewArticleActions.UPDATE_COMMENT:

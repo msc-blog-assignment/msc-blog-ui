@@ -11,8 +11,16 @@ import {FetchResult} from 'apollo-link';
 const query = gql`
   query {
     articles {
-      id,
+      id
       userId
+      createdAt
+      name
+      user {
+        username
+        avatar {
+          avatar
+        }
+      }
     }
   }
 `;

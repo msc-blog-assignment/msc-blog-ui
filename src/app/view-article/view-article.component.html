@@ -1,5 +1,11 @@
-<app-article-renderer [article]="(viewArticleState$ | async)?.article"></app-article-renderer>
+<div *ngIf="!(isFetching$ | async) else loading">
+  <app-article-renderer [article]="(viewArticleState$ | async)?.article"></app-article-renderer>
 
-<app-add-comment [comment]="(viewArticleState$ | async)?.addCommentForm?.comment"></app-add-comment>
+  <app-add-comment [comment]="(viewArticleState$ | async)?.addCommentForm?.comment"></app-add-comment>
 
-<app-comment-list [comments]="(viewArticleState$ | async)?.article?.comments"></app-comment-list>
+  <app-comment-list [comments]="(viewArticleState$ | async)?.article?.comments"></app-comment-list>
+</div>
+
+<ng-template #loading>
+  <app-loading></app-loading>
+</ng-template>

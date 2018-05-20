@@ -11,7 +11,6 @@ import {setContext} from 'apollo-link-context';
 import {UserState} from '../user/user.state';
 import {ApolloLink} from 'apollo-link';
 import {isPlatformBrowser} from '@angular/common';
-import {ToastrModule} from 'ngx-toastr';
 
 const authLink = setContext((_, {headers}) => {
   const user: UserState = JSON.parse(localStorage.getItem('user'));
@@ -28,10 +27,7 @@ const authLink = setContext((_, {headers}) => {
     CommonModule,
     HttpClientModule,
     ApolloModule,
-    HttpLinkModule,
-    ToastrModule.forRoot({
-      positionClass: 'toast-bottom-right'
-    })
+    HttpLinkModule
   ],
   exports: [
     RouterModule,

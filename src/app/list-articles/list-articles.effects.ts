@@ -14,7 +14,7 @@ export class ListArticlesEffects {
     ofType(ListArticlesActions.FETCH),
     mergeMap(() =>
       this.articlesService.getArticles().pipe(
-        map(() => this.actions.fetchSuccess()),
+        map((response) => this.actions.fetchSuccess(response.data.articles)),
         catchError((err) => of(this.actions.fetchFail(err)))
       )
     ));

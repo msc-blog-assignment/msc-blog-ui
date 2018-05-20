@@ -5,6 +5,7 @@ import {MatButtonModule, MatChipsModule, MatIconModule, MatListModule, MatOption
 import {SideNavActions} from './side-nav.actions';
 import {MyArticlesComponent} from './my-articles/my-articles.component';
 import {RouterModule} from '@angular/router';
+import { HomeButtonComponent } from './home-button/home-button.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import {RouterModule} from '@angular/router';
     MatButtonModule,
     MatChipsModule
   ],
-  declarations: [SideNavComponent, MyArticlesComponent],
+  declarations: [SideNavComponent, MyArticlesComponent, HomeButtonComponent],
   exports: [SideNavComponent],
   providers: [SideNavActions]
 })

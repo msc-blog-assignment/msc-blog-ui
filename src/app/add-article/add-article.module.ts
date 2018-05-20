@@ -9,7 +9,7 @@ import {AddArticleActions} from './add-article.actions';
 import {ArticlesService} from '../articles/articles.service';
 import {RouterModule, Routes} from '@angular/router';
 import {AddArticleFormComponent} from './add-article-form/add-article-form.component';
-import {MatCardModule, MatFormFieldModule, MatInputModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 
 const routes: Routes = [
   {
@@ -24,6 +24,7 @@ const routes: Routes = [
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    MatButtonModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature('addArticle', reducer),
     EffectsModule.forFeature([AddArticleEffects])

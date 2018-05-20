@@ -26,6 +26,9 @@ export interface ViewArticle {
     },
     articles: {
       name: string;
+    },
+    avatar: {
+      avatar
     }
   },
   comments: Comment[]

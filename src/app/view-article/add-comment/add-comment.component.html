@@ -1,10 +1,15 @@
-<mat-form-field>
-    <textarea matInput
-              placeholder="Add Comment"
-              (keyup)="updateComment($event.target.value)"
-              [value]="comment">
-    </textarea>
-</mat-form-field>
-<button mat-button
-        (click)="addComment()">Add Comment
-</button>
+<div class="wrapper">
+  <mat-card>
+    <mat-card-content>
+      <mat-form-field>
+      <textarea matInput
+                placeholder="Add Comment"
+                (keyup)="updateComment($event.target.value)"
+                [value]="comment"></textarea>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="addComment()" mat-button>Comment</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

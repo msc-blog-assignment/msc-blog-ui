@@ -32,6 +32,9 @@ const fetchArticleById = gql`
         articles {
           name
         }
+        avatar {
+          avatar
+        }
       }
       comments {
         id

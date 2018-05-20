@@ -1,8 +1,7 @@
 <button mat-icon-button [matMenuTriggerFor]="menu">
-  <div class="avatar" *ngIf="!(avatarFailedToLoad | async)">
+  <div class="avatar">
     <img [src]="(user | async)?.avatar?.avatar" [alt]="(user | async)?.me?.username" (error)="imageErrorDetected()"/>
   </div>
-  <div class="avatarEmpty" *ngIf="(avatarFailedToLoad | async)">{{(user | async)?.me?.username.slice(0, 1)}}</div>
 </button>
 <mat-menu #menu>
   <button mat-menu-item [routerLink]="['/settings']">

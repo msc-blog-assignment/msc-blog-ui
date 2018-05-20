@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { ModuleState } from '../add-article/module.state';
-import { MyArticlesActions } from './my-articles.actions';
+import {Component, OnInit} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {ModuleState} from './module.state';
+import {MyArticlesActions} from './my-articles.actions';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-my-articles',
@@ -10,7 +11,11 @@ import { MyArticlesActions } from './my-articles.actions';
 })
 export class MyArticlesComponent implements OnInit {
 
-  constructor(private store: Store<ModuleState>, private actions: MyArticlesActions) { }
+  isFetchingArticles$: Observable<boolean>;
+
+  constructor(private store: Store<ModuleState>, private actions: MyArticlesActions) {
+    this.isFetchingArticles$ = store.select('myArticles', 'isFetchingArticles');
+  }
 
   ngOnInit() {
     this.store.dispatch(this.actions.fetch());

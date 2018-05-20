@@ -1,3 +1,5 @@
-<p>
-  list-articles works!
-</p>
+<app-article-list *ngIf="!(isFetching | async) else loading"></app-article-list>
+
+<ng-template #loading>
+  <app-loading></app-loading>
+</ng-template>

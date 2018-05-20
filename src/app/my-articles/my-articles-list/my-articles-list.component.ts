@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs/Observable';
-import {Article} from '../../articles/article.model';
 import {ModuleState} from '../module.state';
+import {MyArticle} from '../my-articles.state';
 
 @Component({
   selector: 'app-my-articles-list',
@@ -11,7 +11,7 @@ import {ModuleState} from '../module.state';
 })
 export class MyArticlesListComponent {
 
-  articles$: Observable<Article[]>;
+  articles$: Observable<MyArticle[]>;
 
   constructor(private store: Store<ModuleState>) {
     this.articles$ = store.select('myArticles', 'articles');

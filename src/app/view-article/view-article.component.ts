@@ -14,9 +14,11 @@ import {ViewArticleActions} from './view-article.actions';
 export class ViewArticleComponent implements OnInit {
 
   viewArticleState$: Observable<ViewArticleState>;
+  isFetching$: Observable<boolean>;
 
   constructor(private store: Store<ModuleState>, private router: ActivatedRoute, private actions: ViewArticleActions) {
     this.viewArticleState$ = store.select('viewArticle');
+    this.isFetching$ = store.select('viewArticle', 'isFetching');
   }
 
   ngOnInit() {

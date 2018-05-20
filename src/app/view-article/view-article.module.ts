@@ -12,8 +12,9 @@ import {MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule} from
 import {MarkdownModule} from 'ngx-markdown';
 import {AddCommentComponent} from './add-comment/add-comment.component';
 import {CommentsService} from './comments.service';
-import { CommentListComponent } from './comment-list/comment-list.component';
-import { CommentCardComponent } from './comment-card/comment-card.component';
+import {CommentListComponent} from './comment-list/comment-list.component';
+import {CommentCardComponent} from './comment-card/comment-card.component';
+import {CoreModule} from '../core/core.module';
 
 const routes: Routes = [
   {
@@ -25,6 +26,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    CoreModule,
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,

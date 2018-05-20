@@ -1,1 +1,5 @@
-<app-my-articles-list></app-my-articles-list>
+<app-my-articles-list *ngIf="!(isFetchingArticles$ | async) else loading"></app-my-articles-list>
+
+<ng-template #loading>
+  <app-loading></app-loading>
+</ng-template>

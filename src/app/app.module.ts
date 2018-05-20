@@ -21,6 +21,7 @@ import {SideNavModule} from './side-nav/side-nav.module';
 import {customStorage} from 'app/custom-local-storage';
 import {UserModule} from './user/user.module';
 import {LandingEffects} from './landing/landing.effects';
+import {ToastrModule} from 'ngx-toastr';
 
 export function logger(reducer: ActionReducer<AppState>): any {
   return storeLogger()(reducer);
@@ -46,6 +47,9 @@ export const metaReducers = [logger, localStorageSyncReducer];
     MatSidenavModule,
     CoreModule,
     SharedModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right'
+    }),
 
     // Feature Modules
     UserModule,

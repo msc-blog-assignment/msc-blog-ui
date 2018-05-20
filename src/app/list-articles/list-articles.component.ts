@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ListArticlesActions} from './list-articles.actions';
 import {AppState} from '../root.reducer';
 import {Store} from '@ngrx/store';
-import {UserState} from '../user/user.state';
 import {Observable} from 'rxjs/Observable';
 
 @Component({
@@ -12,9 +11,10 @@ import {Observable} from 'rxjs/Observable';
 })
 export class ListArticlesComponent implements OnInit {
 
-  listArticles$: Observable<UserState>;
+  isFetching: Observable<boolean>;
 
   constructor(private store: Store<AppState>, private actions: ListArticlesActions) {
+    this.isFetching = store.select('listArticles', 'isFetching');
   }
 
   ngOnInit() {

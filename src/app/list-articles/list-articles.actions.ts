@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {Article} from './list-articles.state';
 
 @Injectable()
 export class ListArticlesActions {
@@ -9,7 +10,7 @@ export class ListArticlesActions {
 
   fetch = () => ({type: ListArticlesActions.FETCH});
 
-  fetchSuccess = () => ({type: ListArticlesActions.FETCH_SUCCESS});
+  fetchSuccess = (articles: Article[]) => ({type: ListArticlesActions.FETCH_SUCCESS, payload: articles});
 
   fetchFail = (err) => ({type: ListArticlesActions.FETCH_FAIL, payload: err});
 }
